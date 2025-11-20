@@ -7,22 +7,36 @@
 
 你可以将 GitHub 中规则或模块文件的 RAW 链接 复制到 Shadowrocket 中作为远程订阅。
 
-✏️ 文件说明（建议用途）
+✏️  文件说明（建议用途）
 
-建设中
+configs/rules.list
+
+主规则文件，通常包含：
+
+	•	国内直连
+	•	国外代理
+	•	常用服务分流
+	•	自定义例外
+
+modules/module.sgmodule
+
+建议将你的：
+
+	•	MITM 证书设置
+	•	分流策略组
+	•	DNS 配置
+	•	节点组结构
+
+都写在这个模块里。
+
+modules/mitm.sgmodule
+
+如果你想把 MITM 单独维护，可以放这里。
 
 🧩 如何更新？
 
 对任意文件修改 → GitHub 自动保存 RAW 链接不变 →
 Shadowrocket 会自动同步更新（开启自动更新即可）。
-
-🛠 推荐工作流程
-
-	1.	在本地编辑 .list 或 .sgmodule 文件
-	2.	提交更新到 GitHub
-	3.	Shadowrocket 自动载入最新版本
-	4.	如需添加新规则 → 只改 custom.list
-	5.	大改策略 → 修改 main.sgmodule
 
 📝 许可说明
 
