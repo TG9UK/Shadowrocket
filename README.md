@@ -21,7 +21,6 @@ configs/rules.list
 modules/module.sgmodule
 
 https://raw.githubusercontent.com/<TG9UK>/Shadowrocket/main/modules/module.sgmodule
-
 模块文件，通常包含：
 
 	•	MITM 证书设置
