@@ -9,7 +9,7 @@
 
 ✏️  文件说明（建议用途）
 
-configs/rules.list
+configs
 
 规则文件，通常包含：
 
@@ -18,7 +18,7 @@ configs/rules.list
 	•	常用服务分流
 	•	自定义例外
 
-modules/module.sgmodule
+modules
 
 模块文件，通常包含：
 
