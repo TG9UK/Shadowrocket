@@ -1,0 +1,61 @@
+[General]
+bypass-system = true
+skip-proxy = 10.0.0.0/8,172.16.0.0/12,192.168.0.0/16,*.local,localhost,captive.apple.com
+tun-excluded-routes = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,239.255.255.250/32,255.255.255.255/32
+dns-server = https://dns.alidns.com/dns-query,https://doh.pub/dns-query
+fallback-dns-server = system,tls://dns.alidns.com,tls://dot.pub
+hijack-dns = *:53
+icmp-auto-reply = true
+private-ip-answer = true
+dns-direct-fallback-proxy = false
+udp-policy-not-supported-behaviour = REJECT
+
+[Proxy Group]
+🕊️WECHAT-RULES = select,DIRECT,PROXY,policy-select-name=DIRECT
+📲TELEGRAM-RULES = select,PROXY,🇬🇧GB-NODE,policy-select-name=🇬🇧GB-NODE
+🤖CHATGPT-RULES = select,PROXY,🇺🇸US-NODE,policy-select-name=🇺🇸US-NODE
+👩🏻‍💻APPLE-RULES = select,DIRECT,policy-select-name=DIRECT
+💻MICROSOFT-RULES = select,DIRECT,policy-select-name=DIRECT
+🌍GOOGLE-RULES = select,PROXY,🇺🇸US-NODE,policy-select-name=🇺🇸US-NODE
+🎧DIRECT-MEDIA = select,DIRECT,policy-select-name=DIRECT
+🏄🏼‍♂️DIRECT-RULES = select,DIRECT,policy-select-name=DIRECT
+🎬PROXY-MEDIA = select,PROXY,🇺🇸US-NODE,policy-select-name=🇺🇸US-NODE
+🛩️PROXY-RULES = select,PROXY,🇺🇸US-NODE,policy-select-name=🇺🇸US-NODE
+🇭🇰HK-NODE = url-test,interval=300,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(HK|Hong\s?Kong|香港|港)\b
+🇸🇬SG-NODE = url-test,interval=300,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(SG|Singapore|新加坡|狮城|坡)\b
+🇯🇵JP-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(JP|Japan|日本|东京|大阪|福冈|名古屋)\b
+🇹🇼TW-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(TW|Taiwan|台湾|台北|台中|高雄)\b
+🇺🇸US-NODE = url-test,interval=300,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(US|USA|America|United\s?States|美国|洛杉矶|纽约|芝加哥|西雅图)\b
+🇬🇧GB-NODE = url-test,interval=300,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(UK|GB|Britain|England|United\s?Kingdom|英国|伦敦|曼彻斯特)\b
+🇩🇪DE-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(DE|GER|Germany|德国|法兰克福|慕尼黑|柏林)\b
+🇫🇷FR-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(FR|FRA|France|法国|巴黎|马赛)\b
+🇦🇺AU-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(AU|AUS|Australia|澳大利亚|悉尼|墨尔本|布里斯班)\b
+🇦🇪AE-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(AE|UAE|Dubai|阿联酋|迪拜)\b
+🇮🇳IN-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(IN|IND|India|印度|孟买|德里|班加罗尔)\b
+🇰🇷KR-NODE = url-test,interval=600,tolerance=40,timeout=4,url=https://www.gstatic.com/generate_204,policy-regex-filter=(?i)\b(KR|KOR|Korea|韩国|首尔|釜山)\b
+
+[Rule]
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Lan/Lan.list,🏄🏼‍♂️DIRECT-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/WeChat/WeChat.list,🕊️WECHAT-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Telegram/Telegram.list,📲TELEGRAM-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,🤖CHATGPT-RULES
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Apple/Apple_Domain.list,👩🏻‍💻APPLE-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Apple/Apple.list,👩🏻‍💻APPLE-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Microsoft/Microsoft.list,💻MICROSOFT-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Google/Google.list,🌍GOOGLE-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/ChinaMedia/ChinaMedia.list,🎧DIRECT-MEDIA
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China_Domain.list,🏄🏼‍♂️DIRECT-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/China/China.list,🏄🏼‍♂️DIRECT-RULES
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/GlobalMedia/GlobalMedia_Domain.list,🎬PROXY-MEDIA
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/GlobalMedia/GlobalMedia.list,🎬PROXY-MEDIA
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Global/Global_Domain.list,🛩️PROXY-RULES
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Global/Global.list,🛩️PROXY-RULES
+GEOIP,CN,🏄🏼‍♂️DIRECT-RULES
+FINAL,🛩️PROXY-RULES
+
+[Host]
+localhost = 127.0.0.1
+
+[URL Rewrite]
+^https?://(www.)?g.cn https://www.google.com 302
+^https?://(www.)?google.cn https://www.google.com 302
