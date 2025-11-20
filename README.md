@@ -27,12 +27,6 @@ modules/module.sgmodule
 	•	DNS 配置
 	•	节点组结构
 
-都写在这个模块里。
-
-modules/mitm.sgmodule
-
-如果你想把 MITM 单独维护，可以放这里。
-
 🧩 如何更新？
 
 对任意文件修改 → GitHub 自动保存 RAW 链接不变 →
