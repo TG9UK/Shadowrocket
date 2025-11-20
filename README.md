@@ -10,6 +10,7 @@
 ✏️  文件说明（建议用途）
 
 configs/rules.list
+
 规则文件，通常包含：
 
 	•	国内直连
@@ -18,6 +19,7 @@ configs/rules.list
 	•	自定义例外
 
 modules/module.sgmodule
+
 模块文件，通常包含：
 
 	•	MITM 证书设置
