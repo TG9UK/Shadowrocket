@@ -17,6 +17,7 @@
 Shadowrocket 会自动同步更新（开启自动更新即可）。
 
 🛠 推荐工作流程
+
 	1.	在本地编辑 .list 或 .sgmodule 文件
 	2.	提交更新到 GitHub
 	3.	Shadowrocket 自动载入最新版本
