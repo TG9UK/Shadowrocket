@@ -1,3 +1,4 @@
+#!url=https://raw.githubusercontent.com/TG9UK/Shadowrocket/refs/heads/main/modules/module.sgmodule
 #!name=Shadowrocket证书
 #!desc=Shadowrocket证书模块
 #!arguments=证书模块:false, 证书内容:此处粘贴有效的证书内容, 证书密码:Shadowrocket
