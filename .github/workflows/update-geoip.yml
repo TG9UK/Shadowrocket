@@ -1,0 +1,27 @@
+name: Update GeoIP Databases
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # 每周一早上6点自动运行
+  workflow_dispatch:       # 允许手动触发
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download GeoLite2 databases
+        run: |
+          # 下载 ASN 数据库
+          curl -L -o GeoLite2-ASN.mmdb "https://download.maxmind.com/geoip/databases/GeoLite2-ASN/download?suffix=mmdb&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}"
+          # 下载 Country 数据库
+          curl -L -o GeoLite2-Country.mmdb "https://download.maxmind.com/geoip/databases/GeoLite2-Country/download?suffix=mmdb&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}"
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --staged --quiet || (git commit -m "Auto-update GeoLite2 databases" && git push)
