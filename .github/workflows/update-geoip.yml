@@ -12,6 +12,8 @@ jobs:
       # 步骤1：获取仓库代码
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       # 步骤2：下载 GeoLite2 数据库文件
       - name: Download GeoLite2 databases
@@ -26,20 +28,28 @@ jobs:
           curl -L -o GeoLite2-Country.mmdb \
             "https://download.maxmind.com/geoip/databases/GeoLite2-Country/download?suffix=mmdb&license_key=${{ secrets.MAXMIND_LICENSE_KEY }}"
           
-          echo "下载完成！"
+          echo "下载完成！检查文件大小："
+          ls -la *.mmdb
 
-      # 步骤3：提交更新到仓库
-      - name: Commit and push changes
+      # 步骤3：配置 Git
+      - name: Setup Git
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          
-          # 检查文件是否有变化
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      # 步骤4：提交更改
+      - name: Commit changes
+        run: |
           git add .
           if git diff --staged --quiet; then
             echo "没有检测到文件变化，无需提交。"
           else
             git commit -m "Auto-update GeoLite2 databases"
-            git push
-            echo "数据库已更新并提交到仓库！"
+            echo "更改已提交！"
           fi
+
+      # 步骤5：推送更改（使用 token）
+      - name: Push changes
+        run: |
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
+        if: success()
