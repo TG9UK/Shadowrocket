@@ -12,25 +12,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Download Databases
+      - name: Setup geoipupdate
         run: |
-          # 设置许可证密钥
-          LICENSE_KEY="${{ secrets.MAXMIND_LICENSE_KEY }}"
-          
-          echo "开始下载GeoIP数据库..."
-          
-          # 下载ASN数据库 - 使用新的URL格式
-          curl -L -o GeoLite2-ASN.mmdb \
-            "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&suffix=mmdb&license_key=${LICENSE_KEY}"
-          
-          # 下载Country数据库 - 使用新的URL格式
-          curl -L -o GeoLite2-Country.mmdb \
-            "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-Country&suffix=mmdb&license_key=${LICENSE_KEY}"
-          
-          echo "下载完成，检查文件大小："
+          # 安装geoipupdate工具
+          wget -O geoipupdate.deb https://github.com/maxmind/geoipupdate/releases/download/v6.1.0/geoipupdate_6.1.0_linux_amd64.deb
+          sudo dpkg -i geoipupdate.deb
+
+      - name: Create config file
+        run: |
+          cat > GeoIP.conf << EOF
+          AccountID 0
+          LicenseKey ${{ secrets.MAXMIND_LICENSE_KEY }}
+          EditionIDs GeoLite2-ASN GeoLite2-Country
+          DatabaseDirectory .
+          EOF
+          cat GeoIP.conf
+
+      - name: Run geoipupdate
+        run: |
+          geoipupdate -v -f GeoIP.conf
+          echo "下载的文件:"
           ls -la *.mmdb
-          echo "检查文件类型："
-          file *.mmdb
 
       - name: Commit and Push
         run: |
