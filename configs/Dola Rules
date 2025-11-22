@@ -1,0 +1,9 @@
+#!TITLE=Dola & Ciciai Domain Rules
+#!VERSION=1.0.0
+#!URL=https://raw.githubusercontent.com/你的用户名/my-domain-rules/main/domains.conf
+
+# Dola & Ciciai 相关域名
+DOMAIN,dola.com
+DOMAIN-SUFFIX,dola.com
+DOMAIN,ciciai.com
+DOMAIN-SUFFIX,ciciai.com
